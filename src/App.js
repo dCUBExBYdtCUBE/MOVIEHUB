@@ -1,20 +1,54 @@
 import './App.css';
-import { Component } from 'react';
-
-class MyClass extends Component {
-    constructor(){
-    super()
-    this.state = {time: new Date()}
-    //this.tick = this.tick.bind(this)
+import React from 'react';
+import bg from "./img/background.jpg";
+import {useState} from 'react'
+import Button from '@mui/material/Button';
+import Box from '@mui/material/Box';
+import TextField from '@mui/material/TextField';
+function MyApp(){
+    const [textInput, setTextInput] = useState('');
+    const handleTextInputChange=(event)=>{
+        setTextInput(event.target.value);
+        console.log(textInput)
     }
-    //tick()
-    c=
-    tick = () => { this.setState({time:new Date()}) }
-    render(){ setInterval(this.tick,1000)
-     return (<h1>{this.state.time.toLocaleTimeString()}</h1>)
-    }
-     }
+    return(
+        
+        <div style={{backgroundImage:`url(${bg})`,
+                    backgroundSize: "auto",
+                    backgroundPosition: 'center top',
+                    height:"1350px"
+        }}>
+            <div style={{paddingTop:"100px", paddingLeft:"400px"}}>
+                <h1 style={{color:"#122557",fontSize: "6rem" }}>MOVIEHUB</h1>
+                <Box
+                component="form"
+                sx={{
+                    '& > :not(style)': { m: 1, width: '25ch' },
+                }}
+                noValidate
+                autoComplete="off"
+                /></div>
+                
+                <div style={{paddingLeft:"270px"}}>
+                    <TextField id="filled-basic" 
+                        variant="filled" 
+                        sx={{width:680,height:1000}} 
+                        inputProps={{min: 0, 
+                                style: { textAlign: 'center' ,fontSize: 19 }
+                                }
+                            }
+                        onChange= {handleTextInputChange}
+
+                                />
+
+                <Button variant="contained" 
+                    href="#contained-buttons" 
+                    style={{maxHeight: '55px' , minHeight:'55px'}} >Link</Button>
+                    
+                </div>
+            </div>
+    )
+}
 
 
-export default MyClass;
-
+export default MyApp;
