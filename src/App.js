@@ -1,10 +1,13 @@
 import './App.css';
+import './navbar.js';
+import './search.css';
 import React from 'react';
 import bg from "./img/background.jpg";
 import {useState} from 'react'
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
+import Navbar from './search.js';
 function MyApp(){
     const [textInput, setTextInput] = useState('');
     const handleTextInputChange=(event)=>{
@@ -12,12 +15,12 @@ function MyApp(){
         console.log(textInput)
     }
     return(
-        
         <div style={{backgroundImage:`url(${bg})`,
                     backgroundSize: "auto",
                     backgroundPosition: 'center top',
                     height:"1350px"
         }}>
+            <Navbar/>
             <div style={{paddingTop:"100px", paddingLeft:"400px"}}>
                 <h1 style={{color:"#122557",fontSize: "6rem" }}>MOVIEHUB</h1>
                 <Box
@@ -49,6 +52,5 @@ function MyApp(){
             </div>
     )
 }
-
 
 export default MyApp;
