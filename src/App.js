@@ -7,7 +7,7 @@ import {useState} from 'react'
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
-import Navbar from './search.js';
+import Navbar from './navbar.js';
 function MyApp(){
     const [textInput, setTextInput] = useState('');
     const handleTextInputChange=(event)=>{
@@ -21,7 +21,7 @@ function MyApp(){
                     height:"1350px"
         }}>
             <Navbar/>
-            <div style={{paddingTop:"100px", paddingLeft:"400px"}}>
+            <div style={{paddingTop:"100px", paddingLeft:"485px"}}>
                 <h1 style={{color:"#122557",fontSize: "6rem" }}>MOVIEHUB</h1>
                 <Box
                 component="form"
@@ -32,7 +32,7 @@ function MyApp(){
                 autoComplete="off"
                 /></div>
                 
-                <div style={{paddingLeft:"270px"}}>
+                <div style={{paddingLeft:"375px"}}>
                     <TextField id="filled-basic" 
                         variant="filled" 
                         sx={{width:680,height:1000}} 
@@ -52,5 +52,7 @@ function MyApp(){
             </div>
     )
 }
+
+export default MyApp;
 
 export default MyApp;
