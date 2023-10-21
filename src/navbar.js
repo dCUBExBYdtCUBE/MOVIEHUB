@@ -1,16 +1,18 @@
-import target from './target.png';
 import search from './search-259-32.png';
 import './App.css';
+import './search.css'
+import { BoxComponent } from './login';
 
 function Navbar() {
   return (
     <div>
       <header>
-        <nav>
+        <nav 
+>
         <ul className="left-side">
           <li><a
           className="App-link" 
-          href="https://reactjs.org"
+          href="#"
           target="_blank"
           rel="noopener noreferrer"
         >Home
@@ -57,27 +59,9 @@ function Navbar() {
         </a></li>
         </ul>
         <ul className="right-side">
-        <li><a
-          // className="nav navbar-nav navbar-right" 
-          // className="my-navbar"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <img src={search} height='26px'></img>
-          search
-        </a></li>
+        
 
-        <li><a
-          // className="nav navbar-nav navbar-right" 
-          // className="my-navbar"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <img src={target} height='32px' width='32px'></img>
-          profile
-        </a></li>
+        <li><BoxComponent/></li>
           
         </ul>
         </nav>

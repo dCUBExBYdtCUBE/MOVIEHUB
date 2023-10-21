@@ -102,6 +102,9 @@ li a:hover {
 /* change li display property from block to inline block */
 .right-side li, .left-side li{
   display: inline-block;
+  padding: 1px 10px;
+  position:static
+
 }
 /* style the anchor elements */
 .right-side li a, .left-side li a{
@@ -111,7 +114,6 @@ li a:hover {
   height: 100%;
   font-size: 20px;
   color: #233e8e;
-  padding: 10px 16px;
   font-weight:lighter;
   font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
