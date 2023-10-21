@@ -1,0 +1,161 @@
+/*There are additional css elements which can be used for search results in this file, starting from line 99*/
+
+
+/* .App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+ */
+body {
+  background-color: #142864;
+
+}
+
+body::-webkit-scrollbar{
+  width:0.4rem;
+}
+
+body::-webkit-scrollbar-track{
+  background: #61dafb;
+}
+
+body::-webkit-scrollbar-thumb{
+  background:#142864;
+}
+
+nav{
+  margin:0;
+  display:flex;
+  align-items: center;
+  justify-content: space-between;
+  padding:2px;
+  background-color: #61dafb;
+  overflow: hidden;
+  /* height:100vh;
+  width:5rem; */
+}
+nav ul li{
+  display: inline-block;
+  list-style: none;
+  position: relative;
+  margin:5px 30px;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  /* background-color: #333333; */
+}
+
+li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 10px;
+  text-decoration: none;
+}
+
+li a:hover {
+  background-color: #111111;
+  
+}
+
+.right-side, .left-side{
+  list-style-type: none;
+}
+/* change li display property from block to inline block */
+.right-side li, .left-side li{
+  display: inline-block;
+}
+/* style the anchor elements */
+.right-side li a, .left-side li a{
+  text-decoration: none;
+  display: block;
+  width: 100%;
+  height: 100%;
+  font-size: 20px;
+  color: #233e8e;
+  padding: 10px 16px;
+  font-weight:lighter;
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+/* apply hover */
+.right-side li a:hover, .left-side li a:hover{
+  background-color: #0ab9f957;
+}
+
+p{
+  font-size: xx-large;
+  color:#61dafb;
+  margin-left: 2rem;
+}
+img{
+  vertical-align: text-top;
+}
+
+div{
+  color:#61dafb;
+}
+
+div.wrapper{
+  width:1500px;
+  height:auto;
+  border:1px solid whitesmoke;
+  position:absolute;
+  margin-right: 50px;
+}
+div.inside{
+  border:1px solid red;
+  float:left;
+  flex: auto;
+  padding: 10px;
+  width:150px;
+  height:200px;
+  position: relative;
+  bottom:0;
+  text-align: center;
+}
+.bottom{
+  bottom:0;
+  position:absolute;
+  font-size:20px;
+  left:50%;
+  text-align: center;
+  transform: translateX(-50%);
+}
