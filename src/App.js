@@ -1,21 +1,23 @@
 import './App.css';
-import './navbar.js';
 import './search.css';
 import React from 'react';
 import bg from "./img/background.jpg";
 import {useState} from 'react'
-import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
 import {BoxComponent} from './login';
 import TextField from '@mui/material/TextField';
 import Navbar from './navbar.js';
+import SrButton from './searchbutton';
+
 function MyApp(){
     const [textInput, setTextInput] = useState('');
     const handleTextInputChange=(event)=>{
         setTextInput(event.target.value);
         console.log(textInput)
     }
+    
     return(
+        
         <div style={{backgroundImage:`url(${bg})`,
                     backgroundSize: "auto",
                     backgroundPosition: 'center top',
@@ -45,24 +47,14 @@ function MyApp(){
                             }
                         onChange= {handleTextInputChange}
 
-                                />
 
-<div style={{marginTop:"-900px", paddingLeft:"170px"}} >
-                        <Button variant="contained" 
-                            href="#contained-buttons" 
-                            style={{maxHeight: '55px' ,
-                                 minHeight:'55px' ,
-                                 maxWidth:'300px',
-                                 minWidth:'300px'}} 
-                                 >SEARCH!</Button>
-                    
-                    </div>
+                                /></div>
+                       
+                
+                    <div><SrButton/></div>
                 
                 </div>
                 
-
-                
-                </div>
     )
 }
 

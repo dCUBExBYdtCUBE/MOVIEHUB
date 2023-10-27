@@ -2,9 +2,16 @@ import search from './search-259-32.png';
 import './App.css';
 import './search.css'
 import { BoxComponent } from './login';
-
+import { useNavigate } from 'react-router-dom';
 function Navbar() {
+  const navigate = useNavigate();
+  
+  const handleClick = () => {
+    // 👇️ navigate programmatically
+    navigate('/');
+  };
   return (
+
     <div>
       <header>
         <nav 
@@ -12,11 +19,12 @@ function Navbar() {
         <ul className="left-side">
           <li><a
           className="App-link" 
-          href="#"
+          onClick={handleClick}
           target="_blank"
           rel="noopener noreferrer"
         >Home
         </a></li>
+        
 
         <li><a
           className="App-link" 

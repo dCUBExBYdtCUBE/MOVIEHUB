@@ -1,0 +1,67 @@
+div{
+    margin-right: 0.1rem;
+    color:rgb(14, 119, 119)
+}
+div.choice{
+  margin-left: 2.5rem;
+  margin-right: 2.5rem;;
+  background-color: rgb(121, 243, 234);
+  border-radius: 0.5rem;
+  padding-left: 15px;
+  padding-right: 15px;
+  padding-bottom: 15px;
+  padding-top: 1px;
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+.button {
+    border: 1px solid #f7f9f8;
+    /* background: transparent; */
+    margin: 25px 40px;
+    border-radius: 5px;
+    padding: 5px 10px;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    color: rgb(117, 239, 188);
+    font-weight: bold;
+    background-color: rgb(16, 58, 74);
+  }
+
+.button:hover {
+    box-shadow: 3px 3px 0px 0px rgb(117, 239, 188);
+  }
+
+.choice{
+  margin-left: 1.5rem;
+}
+
+.search:hover {
+  box-shadow: 3px 3px 0px 0px rgb(117, 239, 188);
+}
+
+button.search{
+  border: 1px solid #f7f9f8;
+  /* background: transparent; */
+  /* margin-left: 75rem; */
+  margin-left:auto;
+  margin-right:10px;
+  border-radius: 5px;
+  padding: 5px 10px;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  color: rgb(117, 239, 188);
+  font-weight: bold;
+  background-color: rgb(16, 58, 74);
+}
+
+
+.pagination{
+  width:200px;
+  margin: 10px;
+  margin-left: 645px;
+  margin-bottom: 20px;
+  display:inline-block;
+  font-size: medium;
+  color: rgb(117, 239, 188);
+  font-weight: bold;
+  background-color: rgb(16, 58, 74);
+}
