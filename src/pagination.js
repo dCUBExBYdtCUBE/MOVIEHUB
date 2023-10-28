@@ -6,12 +6,17 @@ function Pagination({ data, RenderComponent, pageLimit, dataLimit }) {
   const [currentPage, setCurrentPage] = useState(1);
 
   function goToNextPage() {
+    
     setCurrentPage((page) => page + 1);
+    console.log(pages);
   }
 
   function goToPreviousPage() {
-    setCurrentPage((page) => page - 1);
+    if (currentPage > 1) {
+      setCurrentPage((page) => page - 1);
+    }
   }
+  
 
   function changePage(event) {
     const pageNumber = Number(event.target.textContent);
@@ -31,46 +36,34 @@ function Pagination({ data, RenderComponent, pageLimit, dataLimit }) {
 
   return (
     <>
-      <div className="dataContainer">
+      <div >
         {getPaginatedData().map((d, idx) => (
           <RenderComponent key={idx} data={d} />
         ))}
       </div>
       <div className="pagination">
-        <button style={{  color: '#75EFBC',fontWeight:'bold',
-        // borderBlockColor:'#ffffff',
-        border: '1px solid white',
-        borderRadius:'5px!important',
-        backgroundColor: '#25446f'}}
+        <button 
           onClick={goToPreviousPage}
           className={`prev ${currentPage === 1 ? 'disabled' : ''}`}
         >
-          prev
+          Prev
         </button>
 
         {getPaginationGroup().map((item, index) => (
-          <button style={{  color: '#75EFBC',fontWeight:'bold',
-          // borderBlockColor:'#ffffff',
-          border: '1px solid white',
-          borderRadius:'5px!important',
-          backgroundColor: '#25446f'}}
+          <button
             key={index}
             onClick={changePage}
-            className={`paginationItem ${currentPage === item ? 'active' : null}`}
+            className={`paginationItem ${currentPage === item ? 'active' : ""}`}
           >
             <span>{item}</span>
           </button>
         ))}
 
-        <button style={{  color: '#75EFBC',fontWeight:'bold',
-        // borderBlockColor:'#ffffff',
-        border: '1px solid white',
-        borderRadius:'5px!important',
-        backgroundColor: '#25446f'}}
+        <button
           onClick={goToNextPage}
           className={`next ${currentPage === pages ? 'disabled' : ''}`}
         >
-          next
+          <b>Next</b>
         </button>
       </div>
     </>
@@ -78,5 +71,3 @@ function Pagination({ data, RenderComponent, pageLimit, dataLimit }) {
 }
 
 export default Pagination;
-
-  

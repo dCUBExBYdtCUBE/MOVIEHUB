@@ -8,7 +8,7 @@ function Navbar() {
   
   const handleClick = () => {
     // 👇️ navigate programmatically
-    navigate('/');
+    navigate('/react-gh-pages');
   };
   return (
 
@@ -65,6 +65,15 @@ function Navbar() {
           rel="noopener noreferrer"
         >TV shows
         </a></li>
+
+        <li><a
+          className="App-link" 
+          href="https://reactjs.org"
+          target="_blank"
+          rel="noopener noreferrer"
+        >Favourites
+        </a></li>
+
         </ul>
         <ul className="right-side">
         

@@ -10,7 +10,7 @@ export default function SrButton() {
     };
   
     return (
-        <div style={{marginTop:"-900px", paddingLeft:"490px"}} >
+        <div style={{marginTop:"-900px", paddingLeft:"470px"}} >
         <Button variant="contained" 
             onClick={handleClick}
             style={{maxHeight: '55px' ,

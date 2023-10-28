@@ -55,13 +55,61 @@ button.search{
 
 
 .pagination{
-  width:200px;
-  margin: 10px;
-  margin-left: 645px;
+
+  margin-left: 40%;
   margin-bottom: 20px;
   display:inline-block;
   font-size: medium;
   color: rgb(117, 239, 188);
   font-weight: bold;
-  background-color: rgb(16, 58, 74);
+  
+}
+
+.prev {
+  color: rgb(117, 239, 188);
+  font-weight: bold;
+  border: '1px solid white';
+  border-radius:5px;
+  background-color: rgb(37,68,111);
+  padding:9px;
+}
+
+.next {
+  color: rgb(117, 239, 188);
+  font-weight:'bold';
+  border: '1px solid white';
+  border-radius:5px;
+  background-color: rgb(37,68,111);
+  padding: 9px;
+  
+
+}
+
+.paginationItem{
+ color: rgb(117, 239, 188);
+ font-weight:'bold';
+ border: '1px solid white';
+ border-radius:5px;
+ background-color: rgb(37,68,111);
+ padding:9px;
+
+}
+
+
+.prev.disabled {
+ background-color: #ccc; 
+ color: #666; 
+ cursor: not-allowed; 
+}
+
+.next.disabled {
+ background-color: #ccc; 
+ color: #666;
+ cursor: not-allowed; 
+}
+
+.paginationItem.active {
+ background-color: #0ae8f4;
+ color: rgb(11, 27, 68);
+ font-weight: bold;
 }

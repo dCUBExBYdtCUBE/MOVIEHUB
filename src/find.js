@@ -2,16 +2,31 @@ import logo from './logo.svg';
 import target from './target.png';
 import './search.css';
 import Navbar from "./navbar";
-// import Myfilter from './filter.js';
+import {useState} from 'react'
 import ToggleDiv  from './button.js';
 import Pagination from './pagination';
+import MyComponent from './result';
 function Find() {
+  const [data, setData] = useState([
+    { id: 1, name: 'John Doe', age: 25 },
+    { id: 2, name: 'Jane Smith', age: 30 },
+    { id: 3, name: 'Bob Johnson', age: 35 },
+    { id: 4, name: 'Alice Williams', age: 40 },
+    { id: 5, name: 'Tom Brown', age: 45 },
+  ]); // your data array
+  const pageLimit = 5;
+  const dataLimit = 10;
   return (
     <div >
       <Navbar/>
       <ToggleDiv/>
       <p>Search results for [insert search]<br></br><br></br>
-      
+       <Pagination
+        data={data}
+        RenderComponent={MyComponent}
+        pageLimit={pageLimit}
+        dataLimit={dataLimit}
+      /> 
 
       <div className='wrapper'>
         <div className='inside'><div className='bottom'>messi</div></div>
