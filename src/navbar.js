@@ -10,6 +10,10 @@ function Navbar() {
     // 👇️ navigate programmatically
     navigate('/react-gh-pages');
   };
+
+  const handleClickfav=()=>{
+    navigate('/favourite');
+  }
   return (
 
     <div>
@@ -68,7 +72,7 @@ function Navbar() {
 
         <li><a
           className="App-link" 
-          href="https://reactjs.org"
+          onClick={handleClickfav}
           target="_blank"
           rel="noopener noreferrer"
         >Favourites

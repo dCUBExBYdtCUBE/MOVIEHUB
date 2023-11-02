@@ -2,7 +2,7 @@ import './App.css';
 import './search.css';
 import React from 'react';
 import bg from "./img/background.jpg";
-import {useState} from 'react'
+import {useState,useEffect} from 'react'
 import Box from '@mui/material/Box';
 import {BoxComponent} from './login';
 import TextField from '@mui/material/TextField';
@@ -13,8 +13,11 @@ function MyApp(){
     const [textInput, setTextInput] = useState('');
     const handleTextInputChange=(event)=>{
         setTextInput(event.target.value);
-        console.log(textInput)
     }
+    
+    useEffect(() => {
+        console.log(textInput)
+    }, [textInput]);
     
     return(
         
@@ -51,7 +54,7 @@ function MyApp(){
                                 /></div>
                        
                 
-                    <div><SrButton/></div>
+                    <div>{textInput&&<SrButton textInput={textInput}/>}</div>
                 
                 </div>
                 

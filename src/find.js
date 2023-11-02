@@ -6,7 +6,11 @@ import {useState} from 'react'
 import ToggleDiv  from './button.js';
 import Pagination from './pagination';
 import MyComponent from './result';
+import { useLocation } from 'react-router-dom';
 function Find() {
+  const location = useLocation();
+  const searchParams = new URLSearchParams(location.search);
+  const textInput = searchParams.get('search');
   const [data, setData] = useState([
     { id: 1, name: 'John Doe', age: 25 },
     { id: 2, name: 'Jane Smith', age: 30 },
@@ -20,7 +24,7 @@ function Find() {
     <div >
       <Navbar/>
       <ToggleDiv/>
-      <p>Search results for [insert search]<br></br><br></br>
+      <p>Search results for "{textInput}"<br></br><br></br>
        <Pagination
         data={data}
         RenderComponent={MyComponent}

@@ -1,0 +1,35 @@
+div.wrapper{
+    margin-left: 40px;
+    margin-right: auto;
+    width: fit-content;
+    border: hidden;
+}
+
+div.in{
+    margin-right: auto;
+    width: 50rem;
+    border-color:  #84d4f1;
+    border-width: 0.7rem;
+    border-radius: 2rem;
+    color: #84d4f1;
+}
+
+a{
+    color: #84d4f1;
+    text-align:right;
+}
+
+button.search{
+    border: 1px solid #f7f9f8;
+    /* background: transparent; */
+    /* margin-left: 75rem; */
+    margin-left:auto;
+    margin-right:10px;
+    border-radius: 5px;
+    padding: 5px 10px;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    color: rgb(117, 239, 188);
+    font-weight: bold;
+    background-color: rgb(16, 58, 74);
+  }

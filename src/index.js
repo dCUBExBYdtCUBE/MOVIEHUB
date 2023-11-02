@@ -5,6 +5,7 @@ import MyApp from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter as Router,Route,Routes } from 'react-router-dom';
 import Find from './find';
+import FavoritePage from './fav_page';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
@@ -13,6 +14,7 @@ root.render(
         <Route path="/react-gh-pages" element={<MyApp />} />
 
         <Route path="/find" element={<Find />} />
+        <Route path="/favourite" element={<FavoritePage/>}/>
       </Routes>
       </Router></React.StrictMode>
 );
