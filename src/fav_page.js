@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import ToggleDiv from './button';
 import MyComponent from './result';
-import Navbar from './navbar';
-
+import Navbar from './navbar1';
+import "./fav.css";
 function FavoritePage() {
   const [data, setData] = useState([
     { id: 1, title: 'Item 1', description: 'Description 1' },

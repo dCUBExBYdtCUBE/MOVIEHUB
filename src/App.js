@@ -6,7 +6,7 @@ import {useState,useEffect} from 'react'
 import Box from '@mui/material/Box';
 import {BoxComponent} from './login';
 import TextField from '@mui/material/TextField';
-import Navbar from './navbar.js';
+import Navbar from './navbar1.js';
 import SrButton from './searchbutton';
 
 function MyApp(){

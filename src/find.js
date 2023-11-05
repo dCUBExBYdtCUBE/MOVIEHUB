@@ -1,7 +1,7 @@
 import logo from './logo.svg';
 import target from './target.png';
 import './search.css';
-import Navbar from "./navbar";
+import Navbar from "./navbar1";
 import {useState} from 'react'
 import ToggleDiv  from './button.js';
 import Pagination from './pagination';
@@ -11,6 +11,7 @@ function Find() {
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
   const textInput = searchParams.get('search');
+  
   const [data, setData] = useState([
     { id: 1, name: 'John Doe', age: 25 },
     { id: 2, name: 'Jane Smith', age: 30 },

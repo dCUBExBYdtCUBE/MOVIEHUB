@@ -1,8 +1,11 @@
 import search from './search-259-32.png';
+import React, { useState } from 'react';
 import './App.css';
 import './search.css'
-import { BoxComponent } from './login';
+import Login from './login';
+import BoxComponent from './box';
 import { useNavigate } from 'react-router-dom';
+
 function Navbar() {
   const navigate = useNavigate();
   
@@ -11,11 +14,9 @@ function Navbar() {
     navigate('/react-gh-pages');
   };
 
-  const handleClickfav=()=>{
-    navigate('/favourite');
-  }
-  
-
+  const gotofav = () => {
+    navigate('/fav_page');
+  };
   const signup = () => {
     navigate('/signup');
   };
@@ -23,6 +24,17 @@ function Navbar() {
   const login = () => {
     navigate('/login');
   }
+
+  const [isMouseOver, setIsMouseOver] = useState(false);
+
+  function handleMouseOver() {
+    setIsMouseOver(true);
+  }
+
+  function handleMouseLeave() {
+    setIsMouseOver(false);
+  }
+
   return (
 
     <div>
@@ -33,7 +45,7 @@ function Navbar() {
           <li><a
           className="App-link" 
           onClick={handleClick}
-          target="_blank"
+          target="_self"
           rel="noopener noreferrer"
         >Home
         </a></li>
@@ -81,10 +93,10 @@ function Navbar() {
 
         <li><a
           className="App-link" 
-          onClick={handleClickfav}
-          target="_blank"
+          onClick={gotofav}
+          target="_self"
           rel="noopener noreferrer"
-        >Favourites
+        >Favorites
         </a></li>
 
         </ul>

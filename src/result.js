@@ -1,4 +1,5 @@
 import React from 'react'
+
 function MyComponent({ id, data, removeFromFavorites, isFavoritesPage }) {
     
     return (

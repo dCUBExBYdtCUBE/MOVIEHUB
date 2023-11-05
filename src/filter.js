@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-
 function FilterForm() {
   const [selectedQuality, setSelectedQuality] = useState([]);
   const [selectedReleased, setSelectedReleased] = useState([]);
@@ -71,19 +70,20 @@ function FilterForm() {
     <div className='choice'>
       <h3>Type:</h3>
       <label>
-        <input type="radio" name="type" value="All" /> All
+        <input class="name" type="radio" name="type" value="All" /> All
       </label>
       <label>
-        <input type="radio" name="type" value="Movies" /> Movies
+        <input class="name" type="radio" name="type" value="Movies" /> Movies
       </label>
       <label>
-        <input type="radio" name="type" value="TV Shows" /> TV Shows
+        <input class="name" type="radio" name="type" value="TV Shows" /> TV Shows
       </label>
 
       <h3>Quality:</h3>
       {qualityOptions.map((option) => (
         <label key={option}>
           <input
+            class="name"
             type="checkbox"
             value={option}
             checked={selectedQuality.includes(option)}
@@ -96,6 +96,7 @@ function FilterForm() {
       {releasedOptions.map((option) => (
         <label key={option}>
           <input
+            class="name"
             type="checkbox"
             value={option}
             checked={selectedReleased.includes(option)}
@@ -108,6 +109,7 @@ function FilterForm() {
       {genreOptions.map((option) => (
         <label key={option}>
           <input
+            class="name"
             type="checkbox"
             value={option}
             checked={selectedGenre.includes(option)}
@@ -120,6 +122,7 @@ function FilterForm() {
       {countryOptions.map((option) => (
         <label key={option}>
           <input
+            class="name"
             type="checkbox"
             value={option}
             checked={selectedCountry.includes(option)}

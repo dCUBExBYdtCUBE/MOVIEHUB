@@ -1,0 +1,99 @@
+/* Common styling for the container */
+  
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh; /* 100% of the viewport height to center the content */
+    color: #0a374f;
+    margin-top: 80px;
+    margin:0 auto;
+    max-height: 70vh; /* Set the maximum height to match the viewport height */
+    overflow: hidden; /* Hide content that exceeds the maximum height */
+}
+      
+  
+  
+  /* Styling for the input fields */
+  input {
+    margin: 5px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    width: 300px; /* Adjust the width as needed */
+    color:#374a55;
+  }
+  
+  /* Styling for buttons */
+  button.but {
+    margin: 5px;
+    padding: 10px 20px;
+    border: 1px solid #374a55 !important;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    font-weight: bold;
+    background-color: transparent;
+    border-width: 0;
+    color: #0a374f;
+    font-size: 16px;
+  }
+
+  label{
+    color:#0a374f;
+    width:50%;
+  }
+
+  .name{
+    width:10px;
+    background-color: rgba(240, 248, 255, 0.2);
+  }
+
+  .login{
+    width:90%;
+    background-color: rgba(240, 248, 255, 0.2);
+  }
+  
+  button.but:hover {
+    box-shadow: 4px 4px 1px 1px #054f77;
+    font-weight: bolder;
+    background-color: rgba(255, 255, 255, 0.925);
+  }
+
+  .in-side {
+    text-align: left;
+    padding:20px;
+    margin-top: 80px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    height: 100vh; /* This sets the container to the full height of the viewport */
+    text-align: center;
+    border-style:initial;
+    border-width: 0.5rem;
+    border-radius: 12px;
+    background-color: rgba(240, 248, 255, 0.499);
+  }
+  
+  /* Guest button styles
+  .guest {
+    background-color: transparent;
+    color: #0a374f;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+  } */
+  
+  /* .guest:hover {
+    box-shadow: 5px 5px 2px 2px rgb(89, 53, 89);
+  } */
+  
+
+
+  
+  
