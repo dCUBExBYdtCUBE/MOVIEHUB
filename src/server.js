@@ -1,10 +1,37 @@
+const { rateLimit } = require('express-rate-limit');
 const express=require('express');
 const cors=require('cors');
+const cheerio=require('cheerio');
+const axios=require('axios');
 const app=express();
 app.use(cors());
 app.use(express.json());
+const apiLimiter = rateLimit({
+  windowMs: 1000, // 1 second window
+  max: 5, // 5 requests per second
+});
+
+app.use(apiLimiter);
 
 
+const MAX_RETRIES = 2; // Define the maximum number of retries
+
+async function fetchDataWithRetry(options, retries) {
+  try {
+    const response=await axios.request(options)
+      return response;
+  } catch (error) {
+    if (retries < MAX_RETRIES) {
+      // If rate limited, retry after a delay (e.g., 1 second)
+      if (error.response && error.response.status === 429) {
+        console.log('Rate limited. Retrying...');
+        await new Promise((resolve) => setTimeout(resolve, 1000)); // Adjust the delay as needed
+        return fetchDataWithRetry(options, retries + 1);
+      }
+    }
+    throw error; // Throw the error if not rate-limited or after max retries
+  }
+}
 
   
 const puppeteer = require('puppeteer');
@@ -45,17 +72,24 @@ async function scrapeDynamicPage(url, max) {
         }
       }
 
-      const movieLinks = await page.evaluate(() => {
-        const links = Array.from(document.querySelectorAll('a[href^="/media/tmdb-movie-"]'));
-        const hrefs = links.map(link => link.getAttribute('href'));
-        return hrefs;
+      const pageHTML = await page.content();
+      const $ = cheerio.load(pageHTML);
+
+      const movieLinks = $('a[href^="/media/tmdb-movie-"]').map((index, element) => {
+        const link = $(element);
+        const href = link.attr('href');
+        const spanText = link.find('h1').find('span').text();
+        return {
+          href: href,
+          textContent: spanText
+        };
+      }).get();
+
+      movieLinks.forEach((movieLink) => {
+        movies.add({link:movieLink.href,title:movieLink.textContent});
       });
 
-      for (const href of movieLinks) {
-        movies.add(href);
-      }
-
-      const paginationLinks = await page.evaluate(() => {
+      const paginationLinks = await page.evaluate(()=> {
         const links = Array.from(document.querySelectorAll('a[href^="/search/movie"]'));
         return links.map(link => link.getAttribute('href'));
       });
@@ -74,8 +108,65 @@ async function scrapeDynamicPage(url, max) {
 app.get('/api', async (req, res) => {
     try {
       const scrapedData = await scrapeDynamicPage('https://movie-web.app/search/movie/' + req.query.message, 50);
-      res.send(scrapedData)
-    } 
+     
+      // Collect movie titles
+      const movieTitles = scrapedData.map((movie) => movie.title);
+  
+      // Fetch IMDb data for each movie title
+      const imdbData = [];
+      for (const title of movieTitles) {
+        const options = {
+          method: 'GET',
+          url: 'https://imdb8.p.rapidapi.com/auto-complete',
+          params: { q: title },
+          
+        };
+  
+        try {
+          const response = await fetchDataWithRetry(options,0);
+          const list = response.data.d;
+          for (const item of list){
+            const name = item.l;
+            if(name==title){
+              const id=item.id;
+              const poster = "https://img.freepik.com/premium-vector/coming-soon-banner-with-brick-wall_19426-797.jpg?w=996";
+              if(item.i.imageUrl){
+                const poster = item.i.imageUrl;
+              }
+              const release = item.y;
+              const rank = item.rank;
+              
+              const options = {
+                method: 'GET',
+                url: 'https://imdb8.p.rapidapi.com/title/get-genres',
+                params: {
+                
+                  tconst: item.id
+                },
+                
+              };
+
+                try {
+                  const response =  await fetchDataWithRetry(options,0);
+                  genre=response.data;
+                  imdbData.push({ name, poster, release, rank,genre });
+                } catch (error) {
+                  console.error(error);
+                }
+
+            }
+          };
+        } catch (error) {
+          console.error(error);
+          if (error.response) {
+            console.error(error.response.data);
+          }
+        }
+      }
+  
+      // Send IMDb data in the response
+      res.json(imdbData);
+      }
     
     catch (error) {
       console.error('Error:', error);
@@ -86,3 +177,4 @@ app.get('/api', async (req, res) => {
   app.listen(8000, () => {
     console.log(`Server is running on port 8000.`);
   });
+
