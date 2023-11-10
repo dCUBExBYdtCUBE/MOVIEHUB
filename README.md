@@ -6,6 +6,36 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 In the project directory, you can run:
 
+## MOVIEHUB
+
+Our plan is to build a personalized private search engine which will be able to search for movies based on a keyword provided by the user. It should also be able to keep track of movies saved by the user and delete them if necessary. 
+
+## To run this project:
+
+i. React
+
+ii. Mongo.db
+
+iii. Express.js
+
+iv. Node.js
+
+v. cors
+
+vi. react-router-dom
+
+vii. axios
+
+viii. cheerio
+
+ix. puppeteer
+
+x. express-rate-limit
+
+xi. Material User Interface
+
+xii. nodemon
+
 ### `npm start`
 
 Runs the app in the development mode.\
