@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import './login.css'
 import bg from "./img/background.jpg";
 import { useNavigate } from 'react-router-dom';
-
+import axios from "axios";
 function LoginForm() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -12,21 +12,41 @@ function LoginForm() {
   const [name, setName] = useState('');
 
     const guest=()=>{
-        navigate('./react-gh-pages');
+        navigate('/react-gh-pages?member=guest');
     }
 
   const handleLogin = async (e) => {
     e.preventDefault();
 
     // Simulated authentication logic (replace with your authentication logic)
-    if (email === 'user@example.com' && password === 'password123') {
-      // Successful login
-      alert('Logged in successfully');
-    } else {
-      // Failed login
-      setErrorMessage('Invalid email or password');
-    }
-  };
+
+      try{
+
+          await axios.post("http://localhost:8000/",{
+              email,password
+          })
+          .then(res=>{
+              console.log(res);
+              if(res.data!=="notexist"){
+                  navigate("/react-gh-pages?member="+res.data.name)
+              }
+              else {
+                  alert("Incorrect Password")
+              }
+          })
+          .catch(e=>{
+              alert("wrong details")
+              console.log(e);
+          })
+
+      }
+      catch(e){
+          console.log(e);
+
+      }
+
+  }
+  
 
   return (
     <div style={{backgroundImage:`url(${bg})`,

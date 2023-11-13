@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import './login.css';
 import bg from "./img/background.jpg";
 import { useNavigate } from 'react-router-dom';
-
+import axios from 'axios';
 
 function SignupForm() {
     const navigate = useNavigate();
@@ -12,7 +12,7 @@ function SignupForm() {
   const [errorMessage, setErrorMessage] = useState('');
 
     const guest=()=>{
-        navigate('./react-gh-pages');
+        navigate('/react-gh-pages?member=guest');
     }
 
   const handleSignup = async (e) => {
@@ -20,6 +20,33 @@ function SignupForm() {
 
     // Simulated registration logic (replace with your registration logic)
     if (name && email && password) {
+    
+        try{
+    
+            await axios.post("http://localhost:8000/signup",{
+                name,email,password
+            })
+            .then(res=>{
+                console.log(res.data);
+                if(res.data=="exist"){
+                    alert("User already exists")
+                }
+                else if(res.data=="notexist"){
+                    navigate("/login",{state:{id:email}})
+                }
+            })
+            .catch(e=>{
+                alert("wrong details")
+                console.log(e);
+            })
+    
+        }
+        catch(e){
+            console.log(e);
+    
+        }
+    
+
       // Successful registration
       alert('Registration successful');
     } else {
@@ -43,7 +70,7 @@ function SignupForm() {
         <div>
           {/* <label>Name:</label> */}
           <input
-          class="input"
+          className="input"
           placeholder="Enter your Username"
             type="text"
             value={name}
@@ -54,7 +81,7 @@ function SignupForm() {
         <div>
           {/* <label>Email:</label> */}
           <input
-            class="login"
+            className="login"
             placeholder="Enter your email"
             type="email"
             value={email}
@@ -65,7 +92,7 @@ function SignupForm() {
         <div>
           {/* <label>Password:</label> */}
           <input
-            class="login"
+            className="login"
             placeholder="Enter your password"
             type="password"
             value={password}

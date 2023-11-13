@@ -4,7 +4,7 @@ import './App.css';
 import './search.css'
 import Login from './login';
 import BoxComponent from './box';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate,useLocation } from 'react-router-dom';
 
 function Navbar() {
   const navigate = useNavigate();
