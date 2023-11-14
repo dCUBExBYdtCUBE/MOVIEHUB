@@ -49,7 +49,7 @@ useEffect(() => {
       </Button>
       
       {/* Conditionally render the Login component when the user hovers over the area */}
-      {isMouseOver && (
+      {isMouseOver && !(member!='guest'&&member)&&(
         <div>
           <Button onClick={handleLoginClick}>Login</Button>
           <Button onClick={handleSignUpClick}>Sign Up</Button>
