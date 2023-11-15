@@ -37,7 +37,11 @@ useEffect(() => {
   const handleSignUpClick=()=>{
     navigate('/signup');
   }
-
+  const handlelogoutClick=()=>{
+    setMember('');
+    navigate('/react-gh-pages?member=guest')
+    window.location.reload();
+  }
   return (
     <Box component="span" sx={{ p: 2 }} onMouseOver={handleMouseOver} onMouseOut={handleMouseLeave}>
       <Button>
@@ -53,6 +57,11 @@ useEffect(() => {
         <div>
           <Button onClick={handleLoginClick}>Login</Button>
           <Button onClick={handleSignUpClick}>Sign Up</Button>
+        </div>
+      )}
+      {isMouseOver&& member!='guest'&&member&&(
+        <div>
+          <Button onClick={handlelogoutClick}>Logout</Button>
         </div>
       )}
     </Box>

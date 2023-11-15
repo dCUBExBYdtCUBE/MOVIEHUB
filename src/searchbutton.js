@@ -1,14 +1,20 @@
 import React from 'react';
-import {useNavigate} from 'react-router-dom';
 import Button from '@mui/material/Button';
 import {useEffect,useState} from 'react';
 import LoadingScreen from './loading';
+import { useNavigate,useLocation } from 'react-router-dom';
 export default function SrButton(props) {
     const navigate = useNavigate();
     const {textInput}=props;
     const[Data,setData]=useState("");
     const [loading, setLoading] = useState(false)
-    
+    const[member,setMember]=useState("");
+    const location = useLocation();
+  
+    useEffect(() => {
+      const searchParams = new URLSearchParams(location.search);
+      setMember(searchParams.get('member'));
+    }, [location.member]);
     const handleClick = async() => {
       
       setLoading(true);
@@ -16,7 +22,11 @@ export default function SrButton(props) {
         .then((response) => {
           if (response.ok) {
             // 👇️ navigate programmatically
-            navigate(`/find?search=${textInput}`);
+            if(member){
+              navigate(`/find?search=${textInput}&member=${member}`);}
+            else{
+              navigate(`/find?search=${textInput}&member=guest`);
+            }
             return response.json();
             
           } 

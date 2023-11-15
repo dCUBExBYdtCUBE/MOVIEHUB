@@ -1,5 +1,5 @@
 import search from './search-259-32.png';
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import './App.css';
 import './search.css'
 import Login from './login';
@@ -7,15 +7,29 @@ import BoxComponent from './box';
 import { useNavigate,useLocation } from 'react-router-dom';
 
 function Navbar() {
+  const[member,setMember]=useState("");
+  const location = useLocation();
+  
+  useEffect(() => {
+    const searchParams = new URLSearchParams(location.search);
+    setMember(searchParams.get('member'));
+  }, [location.member]);
   const navigate = useNavigate();
   
   const handleClick = () => {
     // 👇️ navigate programmatically
-    navigate('/react-gh-pages');
-  };
+    if(member){
+      navigate(`/react-gh-pages?member=${member}`);}
+    else{
+      navigate('/react-gh-pages?member=guest')
+      }  };
 
   const gotofav = () => {
-    navigate('/fav_page');
+    if(member){
+    navigate(`/fav_page?member=${member}`);}
+    else{
+      navigate('/fav_page?member=guest')
+    }
   };
   const signup = () => {
     navigate('/signup');

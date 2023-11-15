@@ -8,7 +8,7 @@ app.use(cors());
 app.use(express.json());
 const apiLimiter = rateLimit({
   windowMs: 1000, // 1 second window
-  max: 5, // 5 requests per second
+  max: 4, // 5 requests per second
 });
 
 app.use(apiLimiter);
@@ -119,7 +119,10 @@ app.get('/api', async (req, res) => {
           method: 'GET',
           url: 'https://imdb8.p.rapidapi.com/auto-complete',
           params: { q: title },
-          
+          headers: {
+            'X-RapidAPI-Key': 'cfe5e50546mshcadd28f7019b319p1e3693jsn903c7e9ec003',
+            'X-RapidAPI-Host': 'imdb8.p.rapidapi.com'
+          }
         };
   
         try {
@@ -143,7 +146,10 @@ app.get('/api', async (req, res) => {
                 
                   tconst: item.id
                 },
-                
+                headers: {
+                  'X-RapidAPI-Key': 'cfe5e50546mshcadd28f7019b319p1e3693jsn903c7e9ec003',
+                  'X-RapidAPI-Host': 'imdb8.p.rapidapi.com'
+                }
               };
 
                 try {
