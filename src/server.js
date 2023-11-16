@@ -119,10 +119,7 @@ app.get('/api', async (req, res) => {
           method: 'GET',
           url: 'https://imdb8.p.rapidapi.com/auto-complete',
           params: { q: title },
-          headers: {
-            'X-RapidAPI-Key': 'cfe5e50546mshcadd28f7019b319p1e3693jsn903c7e9ec003',
-            'X-RapidAPI-Host': 'imdb8.p.rapidapi.com'
-          }
+          
         };
   
         try {
@@ -146,10 +143,7 @@ app.get('/api', async (req, res) => {
                 
                   tconst: item.id
                 },
-                headers: {
-                  'X-RapidAPI-Key': 'cfe5e50546mshcadd28f7019b319p1e3693jsn903c7e9ec003',
-                  'X-RapidAPI-Host': 'imdb8.p.rapidapi.com'
-                }
+                
               };
 
                 try {
