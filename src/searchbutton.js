@@ -3,6 +3,9 @@ import Button from '@mui/material/Button';
 import {useEffect,useState} from 'react';
 import LoadingScreen from './loading';
 import { useNavigate,useLocation } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { storeDataAction } from './actions';
+
 export default function SrButton(props) {
     const navigate = useNavigate();
     const {textInput}=props;
@@ -10,7 +13,7 @@ export default function SrButton(props) {
     const [loading, setLoading] = useState(false)
     const[member,setMember]=useState("");
     const location = useLocation();
-  
+    const dispatch = useDispatch();
     useEffect(() => {
       const searchParams = new URLSearchParams(location.search);
       setMember(searchParams.get('member'));
@@ -18,15 +21,14 @@ export default function SrButton(props) {
     const handleClick = async() => {
       
       setLoading(true);
+      const timer = setTimeout(() => {
+        setLoading(false);
+      }, 90000);
       await fetch('http://localhost:8000/api?' + new URLSearchParams({ message: textInput }))
         .then((response) => {
           if (response.ok) {
             // 👇️ navigate programmatically
-            if(member){
-              navigate(`/find?search=${textInput}&member=${member}`);}
-            else{
-              navigate(`/find?search=${textInput}&member=guest`);
-            }
+            
             return response.json();
             
           } 
@@ -37,10 +39,27 @@ export default function SrButton(props) {
         .then((data) => {
           setData(data);
           console.log(data);
+          // Assuming 'data' holds the fetched information
+          dispatch(storeDataAction(data));
+          if(member){
+            navigate(`/find?search=${textInput}&member=${member}`);}
+          else{
+            navigate(`/find?search=${textInput}&member=guest`);
+          }
+          
         })
         .catch((error) => {
           console.error('Fetch Error:', error);
+          setLoading(true);
+          if(member){
+            navigate(`/notfind?search=${textInput}&member=${member}`);}
+          else{
+            navigate(`/notfind?search=${textInput}&member=guest`);
+          }
+
         });
+          clearTimeout(timer);
+          setLoading(false);       
     
       
     };

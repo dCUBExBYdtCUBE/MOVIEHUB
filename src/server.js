@@ -4,6 +4,7 @@ const cors=require('cors');
 const cheerio=require('cheerio');
 const axios=require('axios');
 const app=express();
+const { MongoClient } = require('mongodb');
 app.use(cors());
 app.use(express.json());
 const apiLimiter = rateLimit({
@@ -107,19 +108,38 @@ async function scrapeDynamicPage(url, max) {
 }
 app.get('/api', async (req, res) => {
     try {
+
+      const uri = 'mongodb://127.0.0.1:27017';
+    const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
+
+    // Connect to MongoDB
+    await client.connect();
+
+    // Accessing the database
+    const db = client.db('users');
+
+    // Check if the collection exists
+    const collections = await db.listCollections().toArray();
+    const collectionExists = collections.some((collection) => collection.name === req.query.message);
+
+    if (collectionExists) {
+      // If collection exists, fetch data from MongoDB collection
+      const collectionData = await db.collection(req.query.message).find({}).toArray();
+      res.json(collectionData);
+    } else {
       const scrapedData = await scrapeDynamicPage('https://movie-web.app/search/movie/' + req.query.message, 50);
      
       // Collect movie titles
-      const movieTitles = scrapedData.map((movie) => movie.title);
-  
+      //const movieTitles = scrapedData.map((movie) => movie.title);
+      
       // Fetch IMDb data for each movie title
       const imdbData = [];
-      for (const title of movieTitles) {
+      for (const {link,title} of scrapedData) {
         const options = {
           method: 'GET',
           url: 'https://imdb8.p.rapidapi.com/auto-complete',
           params: { q: title },
-          
+         
         };
   
         try {
@@ -129,9 +149,9 @@ app.get('/api', async (req, res) => {
             const name = item.l;
             if(name==title){
               const id=item.id;
-              const poster = "https://img.freepik.com/premium-vector/coming-soon-banner-with-brick-wall_19426-797.jpg?w=996";
+              var poster = "https://img.freepik.com/premium-vector/coming-soon-banner-with-brick-wall_19426-797.jpg?w=996";
               if(item.i.imageUrl){
-                const poster = item.i.imageUrl;
+                poster = item.i.imageUrl;
               }
               const release = item.y;
               const rank = item.rank;
@@ -143,13 +163,13 @@ app.get('/api', async (req, res) => {
                 
                   tconst: item.id
                 },
-                
+                               
               };
 
                 try {
                   const response =  await fetchDataWithRetry(options,0);
                   genre=response.data;
-                  imdbData.push({ name, poster, release, rank,genre });
+                  imdbData.push({ name, poster, release, rank,genre,link });
                 } catch (error) {
                   console.error(error);
                 }
@@ -165,8 +185,12 @@ app.get('/api', async (req, res) => {
       }
   
       // Send IMDb data in the response
+      const newCollection = db.collection(req.query.message);
+      await newCollection.insertMany(imdbData);
       res.json(imdbData);
       }
+      await client.close();
+    }
     
     catch (error) {
       console.error('Error:', error);

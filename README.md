@@ -37,6 +37,13 @@ xi. Material User Interface
 xii. nodemon
 
 xiii. mongoose
+
+xiv. redux
+
+xv. react-redux
+
+xvi. @reduxjs/toolkit
+
 ### `npm start`
 
 Runs the app in the development mode.\

@@ -6,12 +6,31 @@ import {useState} from 'react'
 import ToggleDiv  from './button.js';
 import Pagination from './pagination';
 import MyComponent from './result';
-import { useLocation } from 'react-router-dom';
+import { useLocation,Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+
+function MovieCard({ movie }) {
+  const movieURL = `https://movie-web.app${movie.link}`; // Construct the URL
+  return (
+    <div className="movie-card">
+      <Link to={movieURL} className="movie-card-link" style={{ display: 'inline-block'}}>
+
+      <img src={movie.poster} alt={`${movie.name} Poster`} />
+      <h3>{movie.name}</h3>
+      <p>Release Year: {movie.release}</p>
+      <p>IMDb Rank: {movie.rank}</p>
+      <p>Genres: {movie.genre.join(', ')}</p>
+      </Link>
+
+    </div>
+  );
+}
 function Find() {
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
   const textInput = searchParams.get('search');
-  
+  const imdbData = useSelector((state) => state.data) || [];
+
   const [data, setData] = useState([
     { id: 1, name: 'John Doe', age: 25 },
     { id: 2, name: 'Jane Smith', age: 30 },
@@ -25,7 +44,6 @@ function Find() {
     <div >
       <Navbar/>
       <ToggleDiv/>
-      <p>Search results for "{textInput}"<br></br><br></br>
        <Pagination
         data={data}
         RenderComponent={MyComponent}
@@ -33,57 +51,16 @@ function Find() {
         dataLimit={dataLimit}
       /> 
 
-      <div className='wrapper'>
-        <div className='inside'><div className='bottom'>messi</div></div>
-        <div className='inside'><div className='bottom'>ronaldo</div></div>
-        <div className='inside'><div className='bottom'>pele</div></div>
-        <div className='inside'><div className='bottom'>maradona</div></div>
-        <div className='inside'><div className='bottom'>cruyff</div></div>
-        <div className='inside'><div className='bottom'>zico</div></div>
-        <div className='inside'><div className='bottom'>van basten</div></div>
-        <div className='inside'><div className='bottom'>ronaldo</div></div>
-        <div className='inside'><div className='bottom'>ronaldinho</div></div>
-        <div className='inside'><div className='bottom'>henry</div></div>
-        <div className='inside'><div className='bottom'>okocha</div></div>
-        <div className='inside'><div className='bottom'>ibrahimovic</div></div>
-        <div className='inside'><div className='bottom'>iniesta</div></div>
-        <div className='inside'><div className='bottom'>xavi</div></div>
-        <div className='inside'><div className='bottom'>gullit</div></div>
-        <div className='inside'><div className='bottom'>zidane</div></div>
-        <div className='inside'><div className='bottom'>scholes</div></div>
-        <div className='inside'><div className='bottom'>maldini</div></div>
-        <div className='inside'><div className='bottom'>zanetti</div></div>
-        <div className='inside'><div className='bottom'>cafu</div></div>
-        <div className='inside'><div className='bottom'>baresi</div></div>
-        <div className='inside'><div className='bottom'>puyol</div></div>
-        <div className='inside'><div className='bottom'>beckenbauer</div></div>
-        <div className='inside'><div className='bottom'>messi</div></div>
-        <div className='inside'><div className='bottom'>ronaldo</div></div>
-        <div className='inside'><div className='bottom'>pele</div></div>
-        <div className='inside'><div className='bottom'>maradona</div></div>
-        <div className='inside'><div className='bottom'>cruyff</div></div>
-        <div className='inside'><div className='bottom'>zico</div></div>
-        <div className='inside'><div className='bottom'>van basten</div></div>
-        <div className='inside'><div className='bottom'>ronaldo</div></div>
-        <div className='inside'><div className='bottom'>ronaldinho</div></div>
-        <div className='inside'><div className='bottom'>henry</div></div>
-        <div className='inside'><div className='bottom'>okocha</div></div>
-        <div className='inside'><a href='https://www.google.com/' target='_blank'><img src="account.png" alt="pls work"></img></a><div className='bottom'>ibrahimovic</div></div>
-        <div className='inside'><a href='https://www.google.com/' target='_blank'>temp</a><div className='bottom'>iniesta</div></div>
-        <div className='inside'><a href='https://www.google.com/' target='_blank'>temp</a><div className='bottom'>xavi</div></div>
-        <div className='inside'><a href='https://www.google.com/' target='_blank'>temp</a><div className='bottom'>gullit</div></div>
-        <div className='inside'><a href='https://www.google.com/' target='_blank'>temp</a><div className='bottom'>zidane</div></div>
-        <div className='inside'><a href='https://www.google.com/' target='_blank'>temp</a><div className='bottom'>scholes</div></div>
-        <div className='inside'><a href='https://www.google.com/' target='_blank'>temp</a><div className='bottom'>maldini</div></div>
-        <div className='inside'><a href='https://www.google.com/' target='_blank'>temp</a><div className='bottom'>zanetti</div></div>
-        <div className='inside'><a href='https://www.google.com/' target='_blank'>temp</a><div className='bottom'>cafu</div></div>
-        <div className='inside'><a href='https://www.google.com/' target='_blank'>temp</a><div className='bottom'>baresi</div></div>
-        <div className='inside'><a href='https://www.google.com/' target='_blank'>temp</a><div className='bottom'>puyol</div></div>
-        <div className='inside'><a href='https://www.google.com/' target='_blank'>temp</a><div className='bottom'>beckenbauer</div></div>
+      <div className="App">
+      <h1 color="white">Search Results for "{textInput}"...</h1>
+      <div className="movie-container">
+        {imdbData.map((movie, index) => (
+          <MovieCard key={index} movie={movie} />
+        ))}
+      </div>
+    </div>
       
       
-      
-      </div></p>
     </div>
   );
 }

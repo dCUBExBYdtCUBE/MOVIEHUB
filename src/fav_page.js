@@ -19,7 +19,6 @@ function FavoritePage() {
   return (
     <div>
       <Navbar />
-      <ToggleDiv />
       <p>
         Your Favorites
         <div className="wrapper">
