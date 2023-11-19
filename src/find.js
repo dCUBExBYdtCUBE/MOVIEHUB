@@ -1,36 +1,41 @@
-import logo from './logo.svg';
 import target from './target.png';
 import './search.css';
 import Navbar from "./navbar1";
 import {useState} from 'react'
 import ToggleDiv  from './button.js';
 import Pagination from './pagination';
-import MyComponent from './result';
+import MyComponent from './result.js';
 import { useLocation,Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import { colors } from '@mui/material';
 
 function MovieCard({ movie }) {
   const movieURL = `https://movie-web.app${movie.link}`; // Construct the URL
   return (
+    <div className='movie-container'>
     <div className="movie-card">
-      <Link to={movieURL} className="movie-card-link" style={{ display: 'inline-block'}}>
-
-      <img src={movie.poster} alt={`${movie.name} Poster`} />
-      <h3>{movie.name}</h3>
-      <p>Release Year: {movie.release}</p>
-      <p>IMDb Rank: {movie.rank}</p>
-      <p>Genres: {movie.genre.join(', ')}</p>
+      <div className='movie-content'>
+      <Link to={movieURL} className="movie-card-link" style={{ display: 'inline-block' }}>
+        <img src={movie.poster} alt={`${movie.name} Poster`} />
+        <h3>{movie.name}</h3>
+        <p>Release Year: {movie.release}</p>
+        <p>IMDb Rank: {movie.rank}</p>
+        {movie.genre && (
+          <p>Genres: {movie.genre.join(', ')}</p>
+        )}
       </Link>
-
+      </div>
+    </div>
     </div>
   );
 }
+
 function Find() {
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
   const textInput = searchParams.get('search');
   const imdbData = useSelector((state) => state.data) || [];
-
+  
   const [data, setData] = useState([
     { id: 1, name: 'John Doe', age: 25 },
     { id: 2, name: 'Jane Smith', age: 30 },
@@ -52,7 +57,7 @@ function Find() {
       /> 
 
       <div className="App">
-      <h1 color="white">Search Results for "{textInput}"...</h1>
+      <h1 style={{color:"white"}}>Search Results for "{textInput}"...</h1>
       <div className="movie-container">
         {imdbData.map((movie, index) => (
           <MovieCard key={index} movie={movie} />

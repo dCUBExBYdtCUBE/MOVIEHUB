@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './login.css';
-import bg from "./img/background.jpg";
+import bg from "./img/background.jpeg";
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
@@ -23,7 +23,7 @@ function SignupForm() {
     
         try{
     
-            await axios.post("http://localhost:8000/signup",{
+            await axios.post("http://localhost:8001/signup",{
                 name,email,password
             })
             .then(res=>{

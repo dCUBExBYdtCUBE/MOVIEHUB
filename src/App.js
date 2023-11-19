@@ -1,7 +1,7 @@
 import './App.css';
 import './search.css';
 import React from 'react';
-import bg from "./img/background.jpg";
+import bg from "./img/background.jpeg";
 import {useState,useEffect} from 'react'
 import Box from '@mui/material/Box';
 import {BoxComponent} from './login';
@@ -22,15 +22,16 @@ function MyApp(){
     return(
         
         <div style={{backgroundImage:`url(${bg})`,
-                    backgroundSize: "auto",
-                    backgroundPosition: 'center top',
-                    height:"1350px",
-                    overflow: "hidden"
+                        backgroundSize: "contain",
+                        backgroundRepeat:"no-repeat",
+                        backgroundPosition: 'center top',
+                        height:"880px",
+                        overflow: "hidden"
 
         }}>
             <Navbar/>
-            <div style={{ paddingLeft:"400px"}}>
-                <h1 style={{color:"#122557",fontSize: "6rem" }}>MOVIEHUB</h1>
+            <div style={{ paddingLeft:"400px",paddingTop:"100px"}}>
+                <h1 style={{textShadow: '8px 8px 8px #000000', color:"#e1caeb",fontSize: "6rem" }}>MOVIEHUB</h1>
                 <Box
                 component="form"
                 sx={{

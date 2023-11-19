@@ -6,11 +6,12 @@
     align-items: center;
     justify-content: center;
     height: 100vh; /* 100% of the viewport height to center the content */
-    color: #0a374f;
-    margin-top: 80px;
+    color: #5f3367;
+    margin-top: 100px;
     margin:0 auto;
     max-height: 70vh; /* Set the maximum height to match the viewport height */
     overflow: hidden; /* Hide content that exceeds the maximum height */
+    position: static;
 }
       
   
@@ -23,21 +24,23 @@
     border-radius: 5px;
     font-size: 16px;
     width: 300px; /* Adjust the width as needed */
-    color:#374a55;
+    color:#5f3367;
+    
   }
   
   /* Styling for buttons */
   button.but {
     margin: 5px;
     padding: 10px 20px;
-    border: 1px solid #374a55 !important;
+    border: 1px solid #5f3367 !important;
     border-radius: 5px;
     cursor: pointer;
     transition: all 0.2s ease-in-out;
     font-weight: bold;
-    background-color: transparent;
+    background-color: rgba(240, 248, 255, 0.201);
+    /* background-color: transparent; */
     border-width: 0;
-    color: #0a374f;
+    color: #5f3367;
     font-size: 16px;
   }
 
@@ -46,26 +49,23 @@
     width:50%;
   }
 
-  .name{
-    width:10px;
-    background-color: rgba(240, 248, 255, 0.2);
-  }
-
-  .login{
+  input{
     width:90%;
-    background-color: rgba(240, 248, 255, 0.2);
+    background-color: rgba(240, 248, 255, 0.4);
   }
   
   button.but:hover {
-    box-shadow: 4px 4px 1px 1px #054f77;
+    box-shadow: 4px 4px 1px 1px #5f3367;
     font-weight: bolder;
-    background-color: rgba(255, 255, 255, 0.925);
+    background-color: #f2f2fd;
+    fill-opacity: 0.75;
+    /* background-color: rgba(253, 248, 255, 0.85); */
   }
 
   .in-side {
     text-align: left;
     padding:20px;
-    margin-top: 80px;
+    margin-top: 100px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -75,7 +75,8 @@
     border-style:initial;
     border-width: 0.5rem;
     border-radius: 12px;
-    background-color: rgba(240, 248, 255, 0.499);
+    background-color: rgba(240, 248, 255, 0.69);
+    position: inherit;
   }
   
   /* Guest button styles
