@@ -4,6 +4,7 @@ const cors=require('cors');
 const cheerio=require('cheerio');
 const axios=require('axios');
 const app=express();
+const mongoose=require('mongoose')
 const { MongoClient } = require('mongodb');
 app.use(cors());
 app.use(express.json());
@@ -139,7 +140,7 @@ app.get('/api', async (req, res) => {
           method: 'GET',
           url: 'https://imdb8.p.rapidapi.com/auto-complete',
           params: { q: title },
-         
+          
         };
   
         try {
@@ -163,7 +164,7 @@ app.get('/api', async (req, res) => {
                 
                   tconst: item.id
                 },
-                               
+              
               };
 
                 try {
